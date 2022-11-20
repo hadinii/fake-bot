@@ -19,11 +19,14 @@ const botSay = (data) => {
 pertanyaan.innerHTML = botSay()[0];
 
 const botStart = () => {
+  if (jawaban.value.length < 1) return alert(`Silahkan isi jawabanmu dulu`);
   init++;
   if (init === 1) {
     botDelay({ nama: jawaban.value });
+    jawaban.type = 'number'
   } else if (init === 2) {
     botDelay({ umur: jawaban.value });
+    jawaban.type = 'text'
   } else if (init === 3) {
     botDelay({ hobi: jawaban.value });
   } else if (init === 4) {
@@ -54,6 +57,9 @@ const botFinishing = () => {
 };
 
 const botEnd = () => {
+  alert(
+    `Terimakasih ${usersData[0]} sudah berkunjung, anda akan diarahkan ke halaman utama.`
+  );
   loaders.style.display = "block";
   container[0].style.filter = "blur(8px)";
   setTimeout(() => {
